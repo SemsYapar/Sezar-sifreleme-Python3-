@@ -11,9 +11,9 @@ def şifrele():
     metin=input("Şifrelemek istediğiniz metni giriniz ")
     cls()
     while True:
-        anahtar=int(input("Anahtar belirtiniz 1 ile 93(1-93) arasında "))
-        if anahtar < 1 or anahtar > 93:
-            print("Tekrar deneyin..\n Nütfen 1 ile 93 arasında bir sayı giriniz ")
+        anahtar=int(input("Anahtar belirtiniz anahtar doğal sayı olmalı: "))
+        if int(anahtar) < 0:
+            print("Tekrar deneyin..\n Nütfen pozitif sayı giriniz ")
             input()
             cls()
         else:
@@ -21,12 +21,8 @@ def şifrele():
             break
     for harf in metin:
         if ord(harf) == 32:
-            şifrelim = şifrelim+chr(ord(harf))
-        else:
-            if ord(harf)+anahtar > 126:
-                şifrelim = şifrelim + chr(32+ord(harf)+anahtar - 126)
-                continue 
-            şifrelim = şifrelim+chr(ord(harf)+anahtar)
+            şifrelim += " "
+        şifrelim = şifrelim+chr(ord(harf)+anahtar)
     print("İşlem başarılı, şifrelenen metin"," ' ",şifrelim," ' ")
     input()
 def şifreçöz():
@@ -40,10 +36,10 @@ def şifreçöz():
     metin=input("Çözmek istediğiniz metni giriniz ")
     cls()
     while True:
-        anahtar=int(input("Anahtar belirtiniz 1 ile 93(1-93) arasında "))
-        if anahtar < 1 or anahtar > 93:
+        anahtar=int(input("Anahtar belirtiniz (pozitif sayi olucak anahtar) "))
+        if int(anahtar) < 0:
             cls()
-            print("Tekrar deneyin..\n Nütfen 1 ile 93 arasında bir sayı giriniz ")
+            print("Tekrar deneyin..\n Nütfen pozitif bir anahtar belirt abiciğim ")
             input()
             cls()
         else:
@@ -51,12 +47,9 @@ def şifreçöz():
             break
     for harf in metin:
         if ord(harf) == 32:
-            şifrelim = şifrelim+chr(ord(harf))
+            şifrelim += " "
         else:
-            if abs(ord(harf)-anahtar) < 33:  
-                şifrelim = şifrelim + chr(127 - abs(33 - (ord(harf)-anahtar)))
-                continue 
-            şifrelim = şifrelim+chr(abs(ord(harf)-anahtar))
+            şifrelim += chr(int(ord(harf)-anahtar))
     print("İşlem başarılı, çözülen metin"," ' ",şifrelim," ' ")
     input()
 
